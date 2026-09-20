@@ -1,4 +1,4 @@
-# AI-Model
+# AI-Model / Setup Instruction
 
 ## Sematic Search Application
 
@@ -6,7 +6,7 @@
 
 ####  This project is a semantic search application built with Python and Streamlit. It searches through PDF, DOCX, and TXT documents and returns the most semantically similar document chunks for a user's query.
 
-#### The application uses Sentence Transformers (all-MiniLM-L6-v2) to convert text into embeddings and FAISS to search for similar vectors. The used libraries is clearly mentioned in requirement.txt file. 
+#### The application uses Sentence Transformers (all-MiniLM-L6-v2) to convert text into embeddings and FAISS to search for similar vectors. The required libraries are listed in the requirement.txt file. 
 
 ### Setup
 
