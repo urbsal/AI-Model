@@ -1,17 +1,3 @@
-"""
-Document Similarity Search App
---------------------------------
-Combines:
-  1) Sample documents already sitting in the local "documents/" folder
-  2) Files the user uploads at runtime (pdf, docx, txt)
-
-Builds a single FAISS index over all chunks and lets the user search
-for the most similar chunks to a typed query.
-
-Run with:
-    streamlit run app.py
-"""
-
 import os
 import io
 import numpy as np
@@ -25,14 +11,7 @@ FOLDER_PATH = "documents/"
 CHUNK_SIZE = 300  # words per chunk
 
 
-# ----------------------------------------------------------------------
-# Text extraction
-#
-# Same idea as a plain "file_path.endswith(...)" check, except an
-# uploaded file has no real path on disk -- just a filename and an
-# in-memory file object -- so we check the name string and read from
-# the object itself instead of re-opening a path.
-# ----------------------------------------------------------------------
+
 def extract_text(filename, file_obj) -> str:
     text = ""
 
@@ -55,9 +34,9 @@ def extract_text(filename, file_obj) -> str:
     return text.strip()
 
 
-# ----------------------------------------------------------------------
+
 # Chunking
-# ----------------------------------------------------------------------
+
 def text_breakdown(text: str, chunk_size: int = CHUNK_SIZE):
     words = text.split()
     pieces = []
@@ -67,9 +46,9 @@ def text_breakdown(text: str, chunk_size: int = CHUNK_SIZE):
     return pieces
 
 
-# ----------------------------------------------------------------------
+
 # Loading: sample files on disk + files the user uploaded
-# ----------------------------------------------------------------------
+
 def load_all_documents(uploaded_files):
     documents, sources = [], []
 
@@ -95,17 +74,16 @@ def load_all_documents(uploaded_files):
     return documents, sources
 
 
-# ----------------------------------------------------------------------
+
 # Model (cached so it only loads once per session)
-# ----------------------------------------------------------------------
+
 @st.cache_resource(show_spinner="Loading embedding model...")
 def get_model():
     return SentenceTransformer("all-MiniLM-L6-v2")
 
 
-# ----------------------------------------------------------------------
 # Index building
-# ----------------------------------------------------------------------
+
 def build_index(documents):
     model = get_model()
     embeddings = model.encode(documents, convert_to_numpy=True, show_progress_bar=False)
@@ -135,9 +113,8 @@ def search(query, model, index, documents, sources, top_k=5):
     return results
 
 
-# ----------------------------------------------------------------------
 # Streamlit UI
-# ----------------------------------------------------------------------
+
 def main():
     st.set_page_config(page_title="Document Similarity Search", layout="wide")
     st.title("📄 Document Similarity Search")
