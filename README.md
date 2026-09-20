@@ -1,3 +1,3 @@
 # AI-Model
 
-# Sematic Search Application
+## Sematic Search Application
