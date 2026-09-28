@@ -1,0 +1,11 @@
+Newton’s Third Law of Motion
+
+Newton’s Third Law states:
+
+“For every action, there is an equal and opposite reaction.”
+
+This means that when one object exerts a force on another object, the second object exerts an equal force in the opposite direction on the first object.
+
+Example: When you push against a wall, you apply a force to the wall. The wall pushes back on you with an equal force in the opposite direction.
+
+Another example is walking. Your foot pushes the ground backward, and the ground pushes your foot forward, allowing you to move forward.
